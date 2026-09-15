@@ -43,9 +43,9 @@
       <article class="work-item">
         <div class="work-media">
           <img src="images/work-1-cr.png" alt="Content Credentials in Adobe tools" loading="lazy">
-          <span class="tag">
+          <a class="tag" target="_blank" rel="noopener noreferrer">
             <span class="tag-label"></span>
-          </span>
+          </a>
         </div>
         <div class="work-copy">
           <h3>Content Credentials in Adobe tools</h3>
@@ -56,9 +56,9 @@
       <article class="work-item">
         <div class="work-media">
           <img src="images/work-2-cr.png" alt="Provenance in social contexts" loading="lazy">
-          <span class="tag">
+          <a class="tag" target="_blank" rel="noopener noreferrer">
             <span class="tag-label"></span>
-          </span>
+          </a>
         </div>
         <div class="work-copy">
           <h3>Provenance in social contexts</h3>
@@ -69,9 +69,9 @@
       <article class="work-item">
         <div class="work-media">
           <img src="images/work-3-cr.png" alt="Standards and UX alignment" loading="lazy">
-          <span class="tag">
+          <a class="tag" target="_blank" rel="noopener noreferrer">
             <span class="tag-label"></span>
-          </span>
+          </a>
         </div>
         <div class="work-copy">
           <h3>Standards and UX alignment</h3>
@@ -203,6 +203,7 @@
         if (!tag) return;
         const label = tag.querySelector('.tag-label');
         if (label) label.textContent = `Signed by ${generator}`;
+        tag.href = `https://contentauthenticity.adobe.com/inspect?source=${encodeURIComponent(imgEl.src)}`;
         tag.classList.add('tag-visible');
         tag.removeAttribute('aria-hidden');
       } else {
