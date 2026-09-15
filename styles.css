@@ -142,8 +142,9 @@ a:focus-visible, button:focus-visible {
   color: var(--accent);
   font-family: var(--mono);
   font-size: 9.5px;
+  line-height: 1.3;
   letter-spacing: 0.06em;
-  padding: 4px 9px;
+  padding: 8px;
   border-radius: 20px;
   /* Hidden until the C2PA check confirms real credentials and adds
      the "tag-visible" class via JS. No manifest = stays hidden. */
