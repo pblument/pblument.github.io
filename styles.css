@@ -64,8 +64,10 @@ a:focus-visible, button:focus-visible {
 
 .nav-links {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 4px 24px;
   font-size: 14px;
+  white-space: nowrap;
 }
 
 /* ---------- Header ---------- */
