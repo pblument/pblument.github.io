@@ -104,10 +104,6 @@ a:focus-visible, button:focus-visible {
   color: var(--ink);
   margin: 0 0 16px;
 }
-.lede p:first-child {
-  color: var(--muted);
-  font-style: italic;
-}
 
 /* ---------- Sections ---------- */
 
