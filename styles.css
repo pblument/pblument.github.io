@@ -143,7 +143,6 @@ a:focus-visible, button:focus-visible {
 }
 
 .lede p {
-  max-width: 58ch;
   color: var(--ink);
   margin: 0 0 16px;
 }
