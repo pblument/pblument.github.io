@@ -32,14 +32,19 @@ a {
   text-decoration-thickness: 1px;
   transition: text-decoration-color .15s ease, color .15s ease;
 }
-a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+a:hover,
+.site-nav a:hover,
+.pill:hover {
+  text-decoration-line: underline;
+  text-decoration-color: currentColor;
+}
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 .wrap {
-  max-width: 720px;
+  max-width: calc(1024px + 48px); /* 1024px content + side padding */
   margin: 0 auto;
   padding: 0 24px 64px;
 }
@@ -254,11 +259,7 @@ a:focus-visible, button:focus-visible {
   color: var(--ink);
   transition: border-color .15s ease, color .15s ease, background .15s ease;
 }
-.pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
-}
+.pill:hover { border-color: var(--ink); }
 
 .stamp {
   display: inline-flex;
