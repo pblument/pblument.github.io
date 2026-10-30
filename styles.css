@@ -44,7 +44,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .wrap {
-  max-width: calc(1024px + 48px); /* 1024px content + side padding */
+  max-width: calc(950px + 48px); /* 950px content + side padding */
   margin: 0 auto;
   padding: 0 24px 64px;
 }
