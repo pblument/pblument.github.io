@@ -25,7 +25,10 @@
   <!-- ===== Nav ===== -->
   <nav class="site-nav" aria-label="Main">
     <a class="wordmark" href="#top">Pia Blumenthal</a>
-    <div class="nav-links">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <span class="menu-icon" aria-hidden="true"></span>
+    </button>
+    <div class="nav-links" id="nav-links">
       <a href="#work">Selected work</a>
       <a href="#speaking">Speaking &amp; publications</a>
       <a href="#connect">Connect</a>
@@ -152,6 +155,19 @@
 </div>
 
 <script>
+  // Mobile menu
+  const nav = document.querySelector('.site-nav');
+  const toggle = nav.querySelector('.menu-toggle');
+  const setOpen = (open) => {
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open);
+  };
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  nav.querySelectorAll('.nav-links a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
+  });
+
   document.getElementById('verified-date').textContent =
     'Viewed on ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
