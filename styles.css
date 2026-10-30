@@ -206,7 +206,6 @@ a:focus-visible, button:focus-visible {
 .work-copy p {
   color: var(--muted);
   margin: 0;
-  max-width: 42ch;
 }
 
 /* ---------- Speaking log ---------- */
