@@ -43,9 +43,6 @@
       <article class="work-item">
         <div class="work-media">
           <img src="images/work-1-cr.png" alt="Content Credentials in Adobe tools" loading="lazy">
-          <span class="tag">
-            <span class="tag-label"></span>
-          </span>
         </div>
         <div class="work-copy">
           <h3>Content Credentials in Adobe tools</h3>
@@ -56,9 +53,6 @@
       <article class="work-item">
         <div class="work-media">
           <img src="images/work-2-cr.png" alt="Provenance in social contexts" loading="lazy">
-          <span class="tag">
-            <span class="tag-label"></span>
-          </span>
         </div>
         <div class="work-copy">
           <h3>Provenance in social contexts</h3>
@@ -69,9 +63,6 @@
       <article class="work-item">
         <div class="work-media">
           <img src="images/work-3-cr.png" alt="Standards and UX alignment" loading="lazy">
-          <span class="tag">
-            <span class="tag-label"></span>
-          </span>
         </div>
         <div class="work-copy">
           <h3>Standards and UX alignment</h3>
@@ -154,69 +145,6 @@
 <script>
   document.getElementById('verified-date').textContent =
     'Viewed on ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-</script>
-
-<!-- ===== C2PA Content Credentials check ===== -->
-<!-- Reads real embedded C2PA manifests from each work image and only shows -->
-<!-- the tag when genuine provenance data is present. No manifest = no tag. -->
-<script type="module">
-  import { createC2pa } from 'https://cdn.jsdelivr.net/npm/@contentauth/c2pa-web@latest/+esm';
- 
-  async function checkImage(imgEl) {
-    try {
-      const c2pa = await createC2pa({
-        wasmSrc: 'https://cdn.jsdelivr.net/npm/@contentauth/c2pa-web@latest/dist/resources/c2pa_bg.wasm'
-      });
- 
-      const response = await fetch(imgEl.src);
-      const blob = await response.blob();
-      const reader = await c2pa.reader.fromBlob(blob.type, blob);
-      const manifestStore = await reader.manifestStore();
- 
-      // Debug: log the raw object so we can see its real shape and confirm
-      // we're reading the right property name.
-      console.log(`🔍 Raw manifestStore for ${imgEl.src}:`, manifestStore);
- 
-      const tag = imgEl.closest('.work-media')?.querySelector('.tag');
- 
-      // The library returns snake_case keys: active_manifest is a manifest
-      // ID string, and the actual manifest object lives in manifests[id].
-      const activeId = manifestStore?.active_manifest;
-      const manifest = activeId ? manifestStore.manifests?.[activeId] : null;
- 
-      if (manifest) {
-        const generator =
-          manifest.claim_generator_info?.[0]?.name ||
-          manifest.claim_generator ||
-          'Content Credentials';
-        const validState = manifestStore.validation_state;
-        console.log(`✅ C2PA manifest FOUND for ${imgEl.src} — signed by: ${generator} (${validState})`, manifest);
-
-        // Debug: log assertions specifically, since creator/producer identity
-        // (name, connected social accounts) lives in here if present.
-        console.log(`🔍 Full manifest object for ${imgEl.src}:`, manifest);
-        console.log(`🔍 manifest keys:`, Object.keys(manifest || {}));
-        if (manifest.assertions) {
-          console.log(`🔍 manifest.assertions for ${imgEl.src}:`, manifest.assertions);
-        }
-
-        if (!tag) return;
-        const label = tag.querySelector('.tag-label');
-        if (label) label.textContent = `Signed by ${generator}`;
-        tag.classList.add('tag-visible');
-        tag.removeAttribute('aria-hidden');
-      } else {
-        console.log(`❌ No C2PA manifest found for ${imgEl.src}`);
-        if (tag) tag.remove();
-      }
-    } catch (err) {
-      console.error(`⚠️ C2PA CHECK ERRORED for ${imgEl.src} — this is a script/network problem, not a "no manifest" result:`, err);
-      const tag = imgEl.closest('.work-media')?.querySelector('.tag');
-      if (tag) tag.remove();
-    }
-  }
- 
-  document.querySelectorAll('.work-media img').forEach(checkImage);
 </script>
 
 </body>

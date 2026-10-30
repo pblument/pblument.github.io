@@ -132,31 +132,6 @@ a:focus-visible, button:focus-visible {
   display: block;
 }
 
-.work-media .tag {
-  position: absolute;
-  left: 8px;
-  bottom: 8px;
-  display: inline-flex;
-  align-items: center;
-  background: rgba(245, 245, 240, 0.94);
-  color: var(--accent);
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  padding: 4px 9px;
-  border-radius: 20px;
-  /* Hidden until the C2PA check confirms real credentials and adds
-     the "tag-visible" class via JS. No manifest = stays hidden. */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .2s ease;
-}
-
-.work-media .tag.tag-visible {
-  opacity: 1;
-  visibility: visible;
-}
-
 .work-copy h3 {
   font-family: var(--serif);
   font-weight: 500;
