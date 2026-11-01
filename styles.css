@@ -166,6 +166,42 @@ a:focus-visible, button:focus-visible {
   font-weight: 500;
 }
 
+/* ---------- Body layout ---------- */
+
+/* Intro and Selected work run down the main column; Speaking sits beside
+   them as a sidebar. The 1fr row soaks up extra sidebar height so Selected
+   work stays tucked under the intro. */
+.body-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "lede    sidebar"
+    "work    sidebar";
+  column-gap: 64px;
+  align-items: start;
+}
+
+.body-grid .lede { grid-area: lede; }
+.body-grid #work { grid-area: work; }
+
+.sidebar {
+  grid-area: sidebar;
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+.sidebar .section-label { margin-bottom: 8px; }
+.sidebar .log-year {
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 14px 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.sidebar .year { font-size: 12px; padding-top: 0; }
+.sidebar .log-year ul { gap: 8px; }
+
 /* ---------- Work ---------- */
 
 .work-list {
@@ -273,6 +309,32 @@ a:focus-visible, button:focus-visible {
 
 /* ---------- Responsive ---------- */
 
+@media (max-width: 860px) {
+  .body-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-template-areas:
+      "lede"
+      "sidebar"
+      "work";
+  }
+  .sidebar {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--hairline);
+  }
+  .sidebar .section-label { margin-bottom: 32px; }
+  .sidebar .log-year {
+    grid-template-columns: 72px 1fr;
+    gap: 16px;
+    padding: 18px 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+  .sidebar .year { font-size: 14px; padding-top: 2px; }
+  .sidebar .log-year ul { gap: 10px; }
+}
+
 @media (max-width: 640px) {
   .wrap { padding: 0 20px 48px; }
   .site-header { padding-top: 40px; }
@@ -292,7 +354,8 @@ a:focus-visible, button:focus-visible {
   }
   .work-item { grid-template-columns: 1fr; }
   .work-media { aspect-ratio: 16 / 10; }
-  .log-year { grid-template-columns: 56px 1fr; }
+  .log-year,
+  .sidebar .log-year { grid-template-columns: 56px 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
