@@ -194,7 +194,8 @@ a:focus-visible, button:focus-visible {
   background: var(--accent-soft);
 }
 
-.work-media img {
+.work-media img,
+.work-media video {
   width: 100%;
   height: auto;
   display: block;
