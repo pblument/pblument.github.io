@@ -151,8 +151,8 @@ a:focus-visible, button:focus-visible {
 
 .section {
   scroll-margin-top: 24px;
-  margin-top: 80px;
-  padding-top: 40px;
+  margin-top: 48px;
+  padding-top: 32px;
   border-top: 1px solid var(--hairline);
 }
 
@@ -162,7 +162,7 @@ a:focus-visible, button:focus-visible {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 0 0 32px;
+  margin: 0 0 24px;
   font-weight: 500;
 }
 
@@ -319,11 +319,11 @@ a:focus-visible, button:focus-visible {
       "work";
   }
   .sidebar {
-    margin-top: 80px;
-    padding-top: 40px;
+    margin-top: 48px;
+    padding-top: 32px;
     border-top: 1px solid var(--hairline);
   }
-  .sidebar .section-label { margin-bottom: 32px; }
+  .sidebar .section-label { margin-bottom: 24px; }
   .sidebar .log-year {
     grid-template-columns: 72px 1fr;
     gap: 16px;
