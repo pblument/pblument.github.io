@@ -176,9 +176,15 @@ a:focus-visible, button:focus-visible {
 
 .work-item {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 600px 1fr;
   gap: 24px;
   align-items: start;
+}
+
+/* Below this width a 600px image leaves too little room for the text,
+   so the image stacks above it. */
+@media (max-width: 960px) {
+  .work-item { grid-template-columns: 1fr; }
 }
 
 .work-media {
