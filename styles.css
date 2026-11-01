@@ -209,7 +209,7 @@ a:focus-visible, button:focus-visible {
 }
 
 .work-copy p {
-  color: var(--muted);
+  color: var(--ink);
   margin: 0;
 }
 
