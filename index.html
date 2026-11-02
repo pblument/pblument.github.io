@@ -130,7 +130,7 @@
 
       <article class="work-item">
         <div class="work-media">
-          <video src="images/work-3.mp4" poster="images/work-3-poster.jpg" muted loop playsinline preload="metadata" data-autoplay aria-label="Animated Content Credentials logo: the wordmark collapses into the cr pin, which a cursor selects"></video>
+          <video src="images/work-3.mp4" poster="images/work-3-poster.jpg" autoplay muted loop playsinline preload="auto" data-autoplay aria-label="Animated Content Credentials logo: the wordmark collapses into the cr pin, which a cursor selects"></video>
         </div>
         <div class="work-copy">
           <h3>Standards and UX alignment</h3>
@@ -181,11 +181,13 @@
     if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
   });
 
-  // Looping work videos play automatically unless the visitor prefers reduced motion,
-  // in which case the poster frame stays put.
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('video[data-autoplay]').forEach((v) => v.play().catch(() => {}));
-  }
+  // Looping work videos autoplay; for visitors who prefer reduced motion,
+  // stop on the first frame instead.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('video[data-autoplay]').forEach((v) => {
+    if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); }
+    else { v.muted = true; v.play().catch(() => {}); }
+  });
 
   document.getElementById('verified-date').textContent =
     'Viewed on ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
